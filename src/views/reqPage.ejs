@@ -1,0 +1,32 @@
+<%- include('../public/partials/head'); %>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+<body>
+    <% if(session.user_id) { %>
+        <%- include('../public/partials/navbar-logged'); %>
+    <% } else { %>
+        <%- include('../public/partials/navbar'); %>
+    <% } %>
+    <div class="container-fluid bg-light pt-4">
+        <div class="container px-5">
+            <h1 class="mb-4">Оставить заявку</h1>
+            <hr>
+            <form action="makeRequestDB" method="post" style="width: 40%; height: 100dvh;">
+                <input type="text" name="title" class="login-form mb-3" placeholder="Тип помощи">
+                <input type="text" name="descr" class="login-form mb-3" placeholder="Описание">
+                <input type="text" name="name" class="login-form mb-3" placeholder="Имя" value="<%=session.name%>">
+                <input type="text" name="surname" class="login-form mb-3" placeholder="Фамилия" value="<%=session.surname%>">
+                <input type="text" name="phone" class="login-form mb-3" placeholder="Номер телефона" value="<%=session.phone%>">
+                <input type="submit" class="btn btn-primary rounded rounded-pill p-2 px-3" id="sub" value="Изменить">
+            </form>
+            
+        </div>
+        
+    </div>
+    
+    <%- include('../public/partials/bg'); %>
+</body>
+</html>

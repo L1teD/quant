@@ -1,0 +1,17 @@
+<%- include('../public/partials/head'); %>
+<body>
+    <% if(session.user_id) { %>
+        <%- include('../public/partials/navbar-logged'); %>
+    <% } else { %>
+        <%- include('../public/partials/navbar'); %>
+    <% } %>
+    <div class="container bg-light main-container" id="main-container">
+        <%- include('../public/partials/about'); %>
+        <%- include('../public/partials/elective'); %>
+        <%- include('../public/partials/news'); %>
+        <%- include('../public/partials/help'); %>
+    </div>
+    
+    <%- include('../public/partials/bg'); %>
+</body>
+</html>

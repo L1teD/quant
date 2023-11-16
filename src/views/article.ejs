@@ -1,0 +1,17 @@
+<%- include('../public/partials/head'); %>
+<body>
+    <% if(session.user_id) { %>
+        <%- include('../public/partials/navbar-logged'); %>
+    <% } else { %>
+        <%- include('../public/partials/navbar'); %>
+    <% } %>
+    <div class="container-fluid bg-light pt-4" style="height: 100dvh;">
+        <div class="container px-5">
+            <h1 style="font-weight: 700;"><%= article[0].title %></h1>
+            <hr class="mb-0">
+            <div class="d-flex justify-content-end"><p class="text-secondary m-0"><%=article[0].date%></p></div>
+            <h5 style="font-weight: 400; white-space: pre-wrap;"><%= article[0].descr %></h5>
+        </div>
+    </div>
+</body>
+</html>

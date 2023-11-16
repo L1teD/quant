@@ -1,0 +1,47 @@
+<%- include('../public/partials/head'); %>
+<body>
+    <% if(session.user_id) { %>
+        <%- include('../public/partials/navbar-logged'); %>
+    <% } else { %>
+        <%- include('../public/partials/navbar'); %>
+    <% } %>
+    <div class="container-fluid bg-light pt-4" style="height: 100dvh;">
+        <div class="container px-5">
+            <div class="d-flex justify-content-center">
+                <img src="/img/<%= quant[0].img %>" alt="" class="mb-5 mt-4">
+            </div>
+            <h4 style="font-weight: 400; white-space: pre-wrap;"><%= quant[0].desc %></h4>
+            <% if(session.user_id && session.phone) { %>
+                <% if(accept == 1 ) {%>
+                    <div class="d-flex justify-content-end">
+                        <form action="/removeQuant" method="post">
+                            <input type="text" name="name" value="<%= session.name%>" hidden>
+                            <input type="text" name="id" value="<%= qid%>" hidden>
+                            <input type="submit" class="btn btn-danger" value="Отменить заявку">
+                        </form>
+                    </div>
+                <% } else { %>
+                    <div class="d-flex justify-content-end">
+                        <form action="/requestQuant" method="post">
+                            <input type="text" name="name" value="<%= session.name%>" hidden>
+                            <input type="text" name="surname" value="<%= session.surname%>" hidden>
+                            <input type="text" name="lastname" value="<%= session.lastname%>" hidden>
+                            <input type="text" name="phone" value="<%= session.phone%>" hidden>
+                            <input type="text" name="id" value="<%= qid%>" hidden>
+                            <input type="submit" class="btn btn-primary" value="Оставить заявку">
+                        </form>
+                    </div>
+                <% } %>
+            <% } if(session.user_id && !session.phone) { %>
+                <div class="d-flex justify-content-end">
+                    <a href="/pa" class="btn btn-secondary">Добавьте номер телефона чтобы оставить заявку</a>
+                </div>
+            <% } if(!session.user_id && !session.phone) { %>
+                <div class="d-flex justify-content-end">
+                    <a href="/login" class="btn btn-secondary">Войдите чтобы оставить заявку</a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

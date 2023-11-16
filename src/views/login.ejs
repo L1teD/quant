@@ -1,0 +1,98 @@
+<%- include('../public/partials/head'); %>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+<body class="login-body">
+    <%- include('../public/partials/navbar'); %>
+    <div class="container bg-light main-container login h-100" id="main-container">
+        <div class="container mt-4 w-50">
+            <div class="d-flex flex-row align-items-center justify-content-center my-4 mt-5">
+                <a onclick="changeTabs()" href="#" class="text-decoration-none text-dark"><h2><span class="text-dark m-0 bold" id="regcolor">Регистрация</span><span class="text-secondary m-0 ms-2" id="logcolor">Войти</span></h2></a>
+            </div>
+            
+            <section id="reg">
+                <form action="/register" method="post">
+                    <input type="text" name="username" class="login-form mb-2" placeholder="Логин">
+                    <input type="text" name="name" class="login-form mb-2" placeholder="Имя">
+                    <input type="text" name="surname" class="login-form mb-2" placeholder="Фамилия">
+                    <input type="text" name="lastname" class="login-form mb-2" placeholder="Отчество">
+                    <input type="password" name="password" class="login-form mb-2" id="input1" placeholder="Пароль">
+                    <input type="password" class="login-form mb-2" id="input2" placeholder="Повторите пароль">
+                    <p class="text-danger" id="error"><%=errorMsg%></p>
+                    <div class="d-flex justify-content-center w-100">
+                        <input type="submit" class="btn btn-primary mb-2 rounded rounded-pill p-2 px-4 mx-5" id="sub" value="Зарегистрироваться" disabled>
+                    </div>    
+               </form>
+            </section>
+
+            <section id="log" hidden>
+                <form action="/login" method="post">
+                    <input type="text" name="username" class="login-form mb-2" placeholder="Логин">
+                    <input type="password" name="password" class="login-form mb-2" placeholder="Пароль">
+                    <p class="text-danger" id="error"><%=errorMsg%></p>
+                    <div class="d-flex justify-content-center w-100">
+                        <input type="submit" class="btn btn-primary mb-2 rounded rounded-pill p-2 px-4 mx-5" id="sub" value="Войти">
+                    </div>    
+               </form>
+            </section>
+        </div>
+    </div>
+    
+    <%- include('../public/partials/bg'); %>
+</body>
+<script>
+    const inp1 = document.getElementById('input1')
+    const inp2 = document.getElementById('input2')
+
+    inp1.addEventListener('input', function (evt) {
+        if (document.getElementById('input1').value != document.getElementById('input2').value) {
+            document.getElementById('sub').disabled = true
+            document.getElementById('error').innerText = "Пароли не совпадают"
+        } else {
+            document.getElementById('error').innerText = ""
+            document.getElementById('sub').disabled = false
+        }
+    })
+    inp2.addEventListener('input', function (evt) {
+        if (document.getElementById('input1').value != document.getElementById('input2').value) {
+            document.getElementById('error').innerText = "Пароли не совпадают"
+            document.getElementById('sub').disabled = true
+        } else {
+            document.getElementById('error').innerText = ""
+            document.getElementById('sub').disabled = false
+        }
+    })
+</script>
+<script>
+    function changeTabs() {
+        const reg = document.getElementById('reg')
+        const log = document.getElementById('log')
+        const regcolor = document.getElementById('regcolor')
+        const logcolor = document.getElementById('logcolor')
+
+        if (log.hidden == true) {
+            logcolor.classList.remove('text-secondary')
+            logcolor.classList.add('text-dark')
+            logcolor.classList.add('bold')
+            regcolor.classList.remove('bold')
+            regcolor.classList.remove('text-dark')
+            regcolor.classList.add('text-secondary')
+
+            log.hidden = false
+            reg.hidden = true
+        } else {
+            regcolor.classList.remove('text-secondary')
+            regcolor.classList.add('bold')
+            regcolor.classList.add('text-dark')
+            logcolor.classList.remove('bold')
+            logcolor.classList.remove('text-dark')
+            logcolor.classList.add('text-secondary')
+
+            log.hidden = true
+            reg.hidden = false
+        }
+    }
+</script>
+</html>

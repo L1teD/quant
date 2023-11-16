@@ -1,0 +1,20 @@
+<div class="container p-md-5 pt-4" id="news">
+    <div class="h1-back-blue d-flex align-items-center justify-content-center mb-3">
+        <h1 class="h1">Новости</h1>
+    </div>
+    <% articles.forEach(article => { %>
+        <a href="article/<%=article.id%>" class="text-decoration-none text-dark">
+            <div class="d-flex justify-content-center mb-3">
+                <div class="media text-muted bg-dark-op p-2 article">
+                    <p class="media-body pb-3 mb-0 small lh-125 wrapit">
+                      <strong class="d-block text-gray-dark"><%=article.title%></strong>
+                      <%=article.descr%>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <p class="small m-0 text-secondary"><%=article.date%></p>
+                    </div>
+                </div>
+            </div>
+        </a>
+    <% }); %>
+</div>

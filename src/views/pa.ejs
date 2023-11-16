@@ -1,0 +1,39 @@
+ <%- include('../public/partials/head'); %>
+<style>
+    body {
+        overflow: hidden;
+    }
+</style>
+<body>
+    <% if(session.user_id) { %>
+        <%- include('../public/partials/navbar-logged'); %>
+    <% } else { %>
+        <%- include('../public/partials/navbar'); %>
+    <% } %>
+    <div class="container-fluid bg-light pt-4">
+        <div class="container px-5">
+            <h1 class="mb-4">Профиль</h1>
+            <hr>
+            <div class="d-flex flex-row align-items-center">
+                <i class="bi bi-person-circle" style="font-size: 72px;"></i>
+                <h2 class="ms-4"><%=session.name%></h2>
+                <h2 class="ms-2"><%=session.surname%></h2>
+                <h2 class="ms-2"><%=session.lastname%></h2>
+            </div>
+
+            <form action="changePA" method="post" style="width: 40%; height: 100dvh;">
+                <input type="text" name="name" class="login-form mb-3" placeholder="Имя" value="<%=session.name%>">
+                <input type="text" name="surname" class="login-form mb-3" placeholder="Фамилия" value="<%=session.surname%>">
+                <input type="text" name="lastname" class="login-form mb-3" placeholder="Отчество" value="<%=session.lastname%>">
+                <input type="email" name="email" class="login-form mb-3" placeholder="Эл. почта" value="<%=session.email%>">
+                <input type="text" name="phone" class="login-form mb-3" placeholder="Номер телефона" value="<%=session.phone%>">
+                <input type="submit" class="btn btn-primary rounded rounded-pill p-2 px-3" id="sub" value="Изменить">
+            </form>
+            
+        </div>
+        
+    </div>
+    
+    <%- include('../public/partials/bg'); %>
+</body>
+</html>

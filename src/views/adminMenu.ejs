@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<style>
+    .bg-dark-2 {
+        background-color: #1c1e20!important;
+    }
+</style>
+<body class="bg-dark-2">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center pt-5">
+            <div class="col-7">
+                <div class="card bg-dark text-light">
+                    <div class="card-header">Заявки на внеурочную деятельность</div>
+                    <div class="card-body">
+
+                    <% results2.forEach(element => { %>
+                        <% if (element.done == 0) {%> 
+                            <div class="border-bottom border-top border-secondary mb-2">
+                                <div class="row py-2 d-flex align-items-center">
+                                    <div class="col-3">
+                                        <%=element.app%>
+                                    </div>
+                                    <div class="col-3">
+                                        <%=element.name%> <%=element.surname%>
+                                    </div>
+                                    <div class="col-3">
+                                        <%=element.phone%>
+                                    </div>
+                                    <div class="col-3">
+                                        <form action="/appDone/<%=element.id%>" method="post">
+                                            <input type="submit" value="Удалить" class="btn btn-danger">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row d-flex justify-content-center pt-5">
+            <div class="col-4">
+                <div class="card bg-dark text-light">
+                    <div class="card-header">Опубликовать новость</div>
+                    <div class="card-body">
+                    <form action="/publishArticle" method="post">
+                        <input type="text" name="title" class="form-control mb-2" placeholder="Заголовок">
+                        <textarea type="password" name="desc" class="form-control mb-2" placeholder="Текст"></textarea>
+                        <button type="submit" class="btn btn-primary">Опубликовать</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <div class="card bg-dark text-light">
+                    <div class="card-header">Заявки на помощь</div>
+                    <div class="card-body">
+
+                    <% results.forEach(element => { %>
+                        <% if (element.done == 0) {%> 
+                            <div class="border-bottom border-top border-secondary mb-2">
+                                <div class="row py-2 d-flex align-items-center">
+                                    <div class="col-2">
+                                        <%=element.title%>
+                                    </div>
+                                    <div class="col-3">
+                                        <%=element.descr%>
+                                    </div>
+                                    <div class="col-2">
+                                        <%=element.name%> <%=element.surname%>
+                                    </div>
+                                    <div class="col-2">
+                                        <%=element.phone%>
+                                    </div>
+                                    <div class="col-3">
+                                        <form action="/reqDone/<%=element.id%>" method="post">
+                                            <input type="submit" value="Удалить" class="btn btn-danger">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+                    <% }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
