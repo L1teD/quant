@@ -1,5 +1,6 @@
 ## main
 
+.env
 ```js
 DB_HOST=XXX.XXX.XXX.XXX
 DB_USER=username
